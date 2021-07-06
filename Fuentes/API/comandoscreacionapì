@@ -1,0 +1,55 @@
+npm init
+npm install express --save  //implemente express
+npm install -D nodemon  //servicio auto ejecutar codigo despue de guardar
+npm install --save sequelize //conectar a bdd
+npm install --save mysql2  //NPMjs buscar que paquetes necesito para generar app
+npm install --save body-parser //responder en json
+npm install --save cors
+///DEPENDENCIAS BASICAS INSTALLADAS
+//Inicializa sequelize
+sequelize init
+
+
+//configurar nodemon
+
+
+//generar docker de sin persistencia
+docker run --name recetas_db -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
+//generar docker con persistencia
+sudo docker run --name recetas_db -v /opt/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
+
+
+//sudo npm install --save -g sequelize-cli
+
+sequelize init
+
+
+sequelize model:create --name usuario --attributes nombre:string,apellido:string,correo:string
+
+sequelize model:create --name ingredientes --attributes nombre:string,unidadMedida:string,valor:integer
+
+sequelize model:create --name plato --attributes nombre:string,descripcion:string,tipo:string
+
+sequelize model:create --name plato_ingredientes --attributes idPlatoIngredientes:integer
+
+sequelize model:create --name almuerzo --attributes nombre:string,cantidad:integer
+
+sequelize model:create --name grupo --attributes numero:integer
+
+sequelize model:create --name tipo_grupo --attributes nombre:string,predominante:string
+
+sequelize model:create --name tragos --attributes nombre:string,descripcion:string,tipo:string
+
+sequelize model:create --name trago_ingredientes --attributes cantidadIngrediente:float
+
+sequelize-cli seed:generate --name demo-user
+
+sequelize db:migrate
+
+
+
+fuente
+https://fonts.google.com/specimen/Dancing+Script?preview.text=RecetasMe&preview.text_type=custom#license
+
+
+
