@@ -13,7 +13,7 @@ app.use(express.json());
 
 //definir
 app.get('/', (req,res)=>{
-    return res.send("BUena");
+    return res.send("Api Rest de Recetas: para consultar recetasaspp.ddns.net:8080/ingredientes - recetasaspp.ddns.net:8080/platos - recetasaspp.ddns.net:8080/tragos");
 });
 
 //endpoint platos
