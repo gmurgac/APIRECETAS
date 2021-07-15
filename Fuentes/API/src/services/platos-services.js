@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
-const plato = require('../models').plato;
+const Plato = require('../models').plato;
 const {Op} = require('sequelize');
 
 exports.getAll = async (filtro = null)=>{
 let platos = null;
 if(filtro == null){
-        platos = await plato.findAll({
+        platos = await Plato.findAll({
         include: {
             association: 'ingredientes',
             
@@ -14,7 +14,7 @@ if(filtro == null){
  
      
 }else{
-    platos = await plato.findAll({
+    platos = await Plato.findAll({
         attribute: 'nombre',
         include:{
             association: 'ingredientes'

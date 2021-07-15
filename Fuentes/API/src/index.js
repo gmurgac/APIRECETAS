@@ -1,6 +1,6 @@
 const express = require('express');
 //const bodyParser = require('body-parser'); deprecado
-const platosService = require('./services/platos-services');
+const platosServices = require('./services/platos-services');
 const platosIngredientesService = require('./services/platos-ingredientes-services');
 const ingredientesServices = require('./services/ingredientes-services');
 const tragosServices = require('./services/tragos-services');
@@ -18,12 +18,12 @@ app.get('/', (req,res)=>{
 
 //endpoint platos
 app.get('/platos', async (req,res)=>{
-    let platos = await platosService.getAll();
+    let platos = await platosServices.getAll();
     return res.send(platos);
 });
 
 app.get('/platos/:filtro', async (req,res)=>{
-    let platos = await platosService.getAll(req.params.filtro);
+    let platos = await platosServices.getAll(req.params.filtro);
     return res.send(platos);
 });
 
@@ -54,6 +54,16 @@ app.get('/tragos/:filtro', async (req,res)=>{
 app.post('/usuarios', async (req, res)=>{
     let usuario = req.body;
     return res.send(await usuariosServices.save(usuario));
+});
+//Endpoint post guardar plato
+app.post('/platos', async (req, res)=>{
+    let plato = req.body;
+    return res.send(await platosServices.save(plato));
+});
+//Endpoint post guardar trago
+app.post('/tragos', async (req, res)=>{
+    let trago = req.body;
+    return res.send(await tragosServices.save(trago));
 });
 
 app.listen(8080);
