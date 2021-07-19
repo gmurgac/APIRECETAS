@@ -31,6 +31,10 @@ app.get('/plato/:filtro', async (req,res)=>{
     let plato = await platosServices.getOne(req.params.filtro);
     return res.send(plato);
 });
+app.get('/trago/:filtro', async (req,res)=>{
+    let trago = await tragosServices.getOne(req.params.filtro);
+    return res.send(trago);
+});
 
 //endpoint platos ingredientes
 app.get('/platosIngredientes', async (req,res)=>{
@@ -79,6 +83,11 @@ app.post('/modificarPlatos', async (req, res)=>{
 app.post('/tragos', async (req, res)=>{
     let trago = req.body;
     return res.send(await tragosServices.save(trago));
+});
+//Endpoint post modificar trago
+app.post('/modificarTragos', async (req, res)=>{
+    let trago = req.body;
+    return res.send(await tragosServices.update(trago));
 });
 //Endpoint post guardar platoIngrediente
 app.post('/platosIngredientes', async (req, res)=>{

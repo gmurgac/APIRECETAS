@@ -48,20 +48,9 @@ return platos;
 };
 
 exports.save = async(plato)=>{
-    /* const platoBuscado = await Plato.findOne({where:{nombre:plato.nombre}});
-    if (platoBuscado === null){ */
+   
         return await Plato.create(plato);
-    };/* else{
-        return await Plato.update({
-            tipo : plato.tipo,
-            descripcion : plato.descripcion
-        },{
-            where: {
-                nombre: plato.nombre
-            }
-        }
-        );
-    } */
+    };
     
 
 
