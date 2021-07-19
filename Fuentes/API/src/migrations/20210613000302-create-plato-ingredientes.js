@@ -19,7 +19,8 @@ module.exports = {
         references: {
           model: 'platos',
           key: 'platoId',
-          as: 'idPlato'
+          as: 'idPlato',
+          
         }
       },
       cantidadIngrediente: {

@@ -25,7 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
       type: DataTypes.INTEGER
     },
-    nombre: DataTypes.STRING,
+    nombre: 
+    {
+      type: DataTypes.STRING,
+      unique: true},
     descripcion: DataTypes.STRING,
     tipo: DataTypes.STRING
   }, {

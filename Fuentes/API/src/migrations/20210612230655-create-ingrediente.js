@@ -10,10 +10,12 @@ module.exports = {
       },
       nombre: {
         unique: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       unidadMedida: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

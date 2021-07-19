@@ -2,6 +2,7 @@ const express = require('express');
 //const bodyParser = require('body-parser'); deprecado
 const platosServices = require('./services/platos-services');
 const platosIngredientesService = require('./services/platos-ingredientes-services');
+const tragosIngredientesService = require('./services/tragos-ingredientes-services');
 const ingredientesServices = require('./services/ingredientes-services');
 const tragosServices = require('./services/tragos-services');
 const usuariosServices = require('./services/usuarios-services');
@@ -26,6 +27,10 @@ app.get('/platos/:filtro', async (req,res)=>{
     let platos = await platosServices.getAll(req.params.filtro);
     return res.send(platos);
 });
+app.get('/plato/:filtro', async (req,res)=>{
+    let plato = await platosServices.getOne(req.params.filtro);
+    return res.send(plato);
+});
 
 //endpoint platos ingredientes
 app.get('/platosIngredientes', async (req,res)=>{
@@ -37,7 +42,12 @@ app.get('/platosIngredientes', async (req,res)=>{
 app.get('/ingredientes', async (req,res)=>{
     let ingredientes = await ingredientesServices.getAll();
     return res.json(ingredientes);
-})
+});
+//endpoint ingredientes
+app.get('/ingredientes/:filtro', async (req,res)=>{
+    let ingredientes = await ingredientesServices.getAll(req.params.filtro);
+    return res.json(ingredientes);
+});
 
 //endpoint tragos
 app.get('/tragos', async (req,res)=>{
@@ -60,10 +70,55 @@ app.post('/platos', async (req, res)=>{
     let plato = req.body;
     return res.send(await platosServices.save(plato));
 });
+//Endpoint post guardar plato
+app.post('/modificarPlatos', async (req, res)=>{
+    let plato = req.body;
+    return res.send(await platosServices.update(plato));
+});
 //Endpoint post guardar trago
 app.post('/tragos', async (req, res)=>{
     let trago = req.body;
     return res.send(await tragosServices.save(trago));
+});
+//Endpoint post guardar platoIngrediente
+app.post('/platosIngredientes', async (req, res)=>{
+    let platoIngrediente = req.body;
+    return res.send(await platosIngredientesService.save(platoIngrediente));
+});
+//Endpoint post borrar platoIngrediente
+app.post('/eliminarPlatoIngredientes', async (req, res)=>{
+    let platoIngrediente = req.body;
+    await platosIngredientesService.delete(platoIngrediente)
+    .then(()=>{
+        return res.status(204).send();
+    });
+});
+//Agregar ingrediente
+app.post('/ingredientes', async (req, res)=>{
+    let ingrediente = req.body;
+    return res.send(await ingredientesServices.save(ingrediente));
+});
+//Agregar ingrediente a trago
+app.post('/tragosIngredientes', async (req, res)=>{
+    let tragoIngrediente = req.body;
+    return res.send(await tragosIngredientesService.save(tragoIngrediente));
+});
+
+//Endpoint post borrar tragoIngrediente
+app.post('/eliminarTragoIngredientes', async (req, res)=>{
+    let tragoIngrediente = req.body;
+    await tragosIngredientesService.delete(tragoIngrediente)
+    .then(()=>{
+        return res.status(204).send();
+    });
+});
+app.post('/modificarTragosIngredientes', async (req, res)=>{
+    let tragoIngrediente = req.body;
+    return res.send(await tragosIngredientesService.update(tragoIngrediente));
+});
+app.post('/modificarPlatosIngredientes', async (req, res)=>{
+    let platoIngrediente = req.body;
+    return res.send(await platosIngredientesService.update(platoIngrediente));
 });
 
 app.listen(8080);

@@ -14,12 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       ingrediente.belongsToMany(models.plato, {
         as: 'Plato',
         foreignKey: 'ingredienteId',
-        through: models.plato_ingredientes
+        through: models.plato_ingredientes,
+        
       });
       ingrediente.belongsToMany(models.tragos,{
         as: 'Trago',
         foreignKey: 'ingredienteId',
-        through: models.trago_ingredientes
+        through: models.trago_ingredientes,
+        
       });
     }
   };
@@ -32,9 +34,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     nombre: {
       unique: true,
-      type:DataTypes.STRING
+      type:DataTypes.STRING,
+      allowNull:false
     },
-    unidadMedida: DataTypes.STRING
+    unidadMedida: {type: DataTypes.STRING,
+    allowNull: false}
   }, {
     sequelize,
     modelName: 'ingrediente',

@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   usuario.init({
-    nickname: DataTypes.STRING,
-    unique: true
+    nickname: {
+      type: DataTypes.STRING,
+      unique: true}
     
   }, {
     sequelize,
