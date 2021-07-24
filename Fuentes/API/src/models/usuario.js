@@ -11,13 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      usuario.hasMany(models.tragos,{
+        as:'tragos usuario',
+        foreignKey: 'tragoId'
+      });
+      usuario.hasMany(models.plato,{
+        as:'platos usuario',
+        foreignKey: 'platoId'
+      });
     }
   };
   usuario.init({
-    nickname: {
-      type: DataTypes.STRING,
-      unique: true}
-    
+    usuarioId: {
+      allowNull:false,
+      autoIncrement:true,
+      primaryKey:true,
+      type: DataTypes.INTEGER},
+    nombreUsuario: DataTypes.STRING,
+    correoUsuario: DataTypes.STRING,
+    passwordUsuario: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'usuario',

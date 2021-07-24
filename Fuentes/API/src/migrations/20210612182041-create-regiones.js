@@ -1,29 +1,33 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('usuarios', {
-      id: {
+    await queryInterface.createTable('regiones', {
+      regionId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nickname: {
-        type: Sequelize.STRING,
-        unique: true
+      nombreRegion: {
+        type: Sequelize.STRING
       },
-      
       createdAt: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.DATE
-      }
+      },paisId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'paises',
+          key: 'paisId',
+          as: 'pais'
+        }}
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('usuarios');
+    await queryInterface.dropTable('regiones');
   }
 };

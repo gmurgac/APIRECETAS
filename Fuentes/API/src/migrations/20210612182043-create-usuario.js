@@ -1,21 +1,20 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tragos', {
-      tragoId: {
+    await queryInterface.createTable('usuarios', {
+      usuarioId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
-        type: Sequelize.STRING,
-        unique: true
+      nombreUsuario: {
+        type: Sequelize.STRING
       },
-      descripcion: {
-        type: Sequelize.TEXT
+      correoUsuario: {
+        type: Sequelize.STRING
       },
-      tipo: {
+      passwordUsuario: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -26,16 +25,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      usuarioId: {
+      comunaId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'usuarios',
-          key: 'usuarioId',
-          as: 'usuario'
-        }}
+          model: 'comunas',
+          key: 'comunaId',
+          as: 'comuna'
+        }
+      }
+
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tragos');
+    await queryInterface.dropTable('usuarios');
   }
 };

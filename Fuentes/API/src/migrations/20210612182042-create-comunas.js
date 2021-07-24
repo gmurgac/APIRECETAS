@@ -1,21 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('tragos', {
-      tragoId: {
+    await queryInterface.createTable('comunas', {
+      comunaId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
-        type: Sequelize.STRING,
-        unique: true
-      },
-      descripcion: {
-        type: Sequelize.TEXT
-      },
-      tipo: {
+      nombreComuna: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -26,16 +19,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      usuarioId: {
+      regionId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'usuarios',
-          key: 'usuarioId',
-          as: 'usuario'
-        }}
-    });
+          model: 'regiones',
+          key: 'regionId',
+          as: 'region'
+        }
+    }});
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('tragos');
+    await queryInterface.dropTable('comunas');
   }
 };

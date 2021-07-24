@@ -30,3 +30,25 @@ exports.getAll = async (filtro = null)=>{
 exports.save = async(ingrediente)=>{
     return await Ingrediente.create(ingrediente);
 };
+
+exports.update = async(ingrediente)=>{
+    return await Ingrediente.update({
+        
+        unidadMedida : ingrediente.unidadMedida
+    },{
+        where: {
+            ingredienteId: ingrediente.ingredienteId
+        }
+    }
+    );
+};
+//ELIMINAR INGREDIENTE
+exports.delete = async(ingrediente)=>{
+   
+    await Ingrediente.destroy({
+       where: {
+           ingredienteId: ingrediente.ingredienteId,
+           
+       }
+   });
+};

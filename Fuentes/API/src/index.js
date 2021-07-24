@@ -63,7 +63,11 @@ app.get('/tragos/:filtro', async (req,res)=>{
     let tragos = await tragosServices.getAll(req.params.filtro);
     return res.send(tragos);
 });
-
+//Endpoint post guardar usuario
+app.get('/usuarios', async (req, res)=>{
+    let usuario = req.body;
+    return res.send(await usuariosServices.getAll());
+});
 //Endpoint post guardar usuario
 app.post('/usuarios', async (req, res)=>{
     let usuario = req.body;
@@ -121,6 +125,14 @@ app.post('/eliminarTragoIngredientes', async (req, res)=>{
         return res.status(204).send();
     });
 });
+//POST ELIMINAR INGREDIENTES
+app.post('/eliminarIngredientes', async (req, res)=>{
+    let ingrediente = req.body;
+    await ingredientesServices.delete(ingrediente)
+    .then(()=>{
+        return res.status(204).send();
+    });
+});
 app.post('/modificarTragosIngredientes', async (req, res)=>{
     let tragoIngrediente = req.body;
     return res.send(await tragosIngredientesService.update(tragoIngrediente));
@@ -129,5 +141,9 @@ app.post('/modificarPlatosIngredientes', async (req, res)=>{
     let platoIngrediente = req.body;
     return res.send(await platosIngredientesService.update(platoIngrediente));
 });
+app.post('/modificarUMIngredientes', async (req,res)=>{
+    let ingrediente = req.body;
+    return res.send(await ingredientesServices.update(ingrediente));
+})
 
 app.listen(8080);

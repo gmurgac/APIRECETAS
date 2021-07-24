@@ -14,7 +14,7 @@ sequelize init
 
 
 //generar docker de sin persistencia
-docker run --name recetas_db -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
+sudo docker run --name recetas_db -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
 //generar docker con persistencia
 sudo docker run --name recetas_db -v /opt/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0
 
@@ -24,7 +24,7 @@ sudo docker run --name recetas_db -v /opt/mysql:/var/lib/mysql -e MYSQL_ROOT_PAS
 sequelize init
 
 
-sequelize model:create --name usuario --attributes nombre:string,apellido:string,correo:string
+sequelize model:create --name usuario --attributes usuarioId:integer,nombreUsuario:string,correoUsuario:string,passwordUsuario:string
 
 sequelize model:create --name ingredientes --attributes nombre:string,unidadMedida:string,valor:integer
 
@@ -41,6 +41,12 @@ sequelize model:create --name tipo_grupo --attributes nombre:string,predominante
 sequelize model:create --name tragos --attributes nombre:string,descripcion:string,tipo:string
 
 sequelize model:create --name trago_ingredientes --attributes cantidadIngrediente:float
+
+sequelize model:create --name paises --attributes paisId:integer,nombrePais:string
+sequelize model:create --name regiones --attributes regionId:integer,nombreRegion:string
+sequelize model:create --name comunas --attributes comunaId:integer,nombreComuna:string
+
+  
 
 sequelize-cli seed:generate --name demo-user
 

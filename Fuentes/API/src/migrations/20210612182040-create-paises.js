@@ -1,21 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('platos', {
-      platoId: {
+    await queryInterface.createTable('paises', {
+      paisId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
-        unique: true,
-        type: Sequelize.STRING
-      },
-      descripcion: {
-        type: Sequelize.TEXT
-      },
-      tipo: {
+      nombrePais: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -29,6 +22,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('platos');
+    await queryInterface.dropTable('paises');
   }
 };
