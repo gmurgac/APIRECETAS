@@ -27,8 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement:true,
       primaryKey:true,
       type: DataTypes.INTEGER},
-    nombreUsuario: DataTypes.STRING,
-    correoUsuario: DataTypes.STRING,
+    nombreUsuario: {
+      unique: true,
+      type: DataTypes.STRING},
+    correoUsuario: {
+      unique: true,
+      type:DataTypes.STRING
+    },
     passwordUsuario: DataTypes.STRING
   }, {
     sequelize,

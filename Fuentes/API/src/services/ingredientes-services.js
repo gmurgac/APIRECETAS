@@ -16,9 +16,13 @@ exports.getAll = async (filtro = null)=>{
     }else{
         ingredientes = await Ingrediente.findAll({
             attribute: 'nombre',
+            order: [
+            
+                ['nombre', 'ASC'],
+            ],
             where:{
                 [Op.or]:[
-                    {nombre:{[Op.like]:`%${filtro}%`}},
+                    {nombre:{[Op.startsWith]:`${filtro}`}},
                 ]
             }
         });

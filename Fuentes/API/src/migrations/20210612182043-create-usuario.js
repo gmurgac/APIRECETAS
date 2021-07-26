@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nombreUsuario: {
+        unique: true,
         type: Sequelize.STRING
       },
       correoUsuario: {
+        unique: true,
         type: Sequelize.STRING
       },
       passwordUsuario: {

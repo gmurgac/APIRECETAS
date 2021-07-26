@@ -73,6 +73,20 @@ app.post('/usuarios', async (req, res)=>{
     let usuario = req.body;
     return res.send(await usuariosServices.save(usuario));
 });
+app.post('/login', async (req, res)=>{
+    let usuario = req.body;
+    await usuariosServices.login(usuario)
+   .then((boolean)=>{
+       if(boolean){
+        return res.status(200).send();
+       }else{
+        return res.status(300).send();
+       }
+    
+   }); 
+    
+
+});
 //Endpoint post guardar plato
 app.post('/platos', async (req, res)=>{
     let plato = req.body;

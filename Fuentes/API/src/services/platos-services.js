@@ -20,6 +20,10 @@ exports.getAll = async (filtro = null)=>{
 let platos = null;
 if(filtro == null){
         platos = await Plato.findAll({
+            order: [
+            
+                ['nombre', 'ASC'],
+            ],
         include: {
             association: 'ingredientes',
             
