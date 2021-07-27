@@ -2,9 +2,21 @@ const Sequelize = require('sequelize');
 const PlatoIngredientes = require('../models').plato_ingredientes;
 
 
+exports.buscarConIngrediente = async (filtro)=>{
+    let platosIngredientes = await PlatoIngredientes.findAll({
+        include: [{association:'idIngrediente',where:{'$idIngrediente.nombre$':filtro}},{association:'idPlato',include:{association:'ingredientes'}}]
+        
+       
+
+    });
+    return platosIngredientes;
+}
+
 exports.getAll = async ()=>{
     let platosIngredientes = await PlatoIngredientes.findAll({
-        
+
+
+                     
     
     });
 

@@ -16,6 +16,27 @@ exports.getOne = async (filtro)=>{
     return plato;
 };
 
+exports.getWithIngredientes = async(filtro)=>{
+    let platos = null;
+    platos = await Plato.findAll({
+        order: [
+            ['nombre','ASC']
+        ],
+        include: {
+        
+            association: 'ingredientes',
+            
+        },
+        where: {
+            '$ingredientes.nombre$' : filtro
+        }
+
+        }
+    );
+    return platos;
+}
+
+
 exports.getAll = async (filtro = null)=>{
 let platos = null;
 if(filtro == null){

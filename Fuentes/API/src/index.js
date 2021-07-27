@@ -22,6 +22,11 @@ app.get('/platos', async (req,res)=>{
     let platos = await platosServices.getAll();
     return res.send(platos);
 });
+//Endpoit post traer plato con ingrediente
+app.get('/platos/ingredientes/:filtro', async(req,res)=>{
+    let platos = await platosServices.getWithIngredientes(req.params.filtro);
+    return res.send(platos);
+})
 
 app.get('/platos/:filtro', async (req,res)=>{
     let platos = await platosServices.getAll(req.params.filtro);
@@ -39,6 +44,11 @@ app.get('/trago/:filtro', async (req,res)=>{
 //endpoint platos ingredientes
 app.get('/platosIngredientes', async (req,res)=>{
     let platosIngredientes = await platosIngredientesService.getAll();
+    return res.send(platosIngredientes);
+});
+//endpoint platos ingredientes
+app.get('/platosIngredientes/:filtro', async (req,res)=>{
+    let platosIngredientes = await platosIngredientesService.buscarConIngrediente(req.params.filtro);
     return res.send(platosIngredientes);
 });
 
@@ -92,6 +102,7 @@ app.post('/platos', async (req, res)=>{
     let plato = req.body;
     return res.send(await platosServices.save(plato));
 });
+
 //Endpoint post guardar plato
 app.post('/modificarPlatos', async (req, res)=>{
     let plato = req.body;
